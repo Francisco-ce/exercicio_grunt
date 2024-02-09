@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="@@ENDERECO_DO_CSS">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Participantes</h1>
+            <form id="form-interacao">
+                <div class="interacao">
+                    <label for="nome-jogador">Nome do jogador <span>1</span id="span-contador">:</label>
+                    <input type="text" id ="nome-jogador" required>
+                    <button type="submit">Adicionar +</button>
+                    
+                </div>
+            </form>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <table class="lista-jogador">
+                <thead>
+                    <tr>
+                        <th>Jogador</th>
+                        <th>Identificador</th>
+                        <th>Retirar da lista</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <form id="sorteador">
+                <button type="submit">sortear</button>
+                <h3></h3>
+            </form>
+        </div>
+    </main>
+
+
+    <script src="@@ENDERECO_DO_JS"></script>
+</body>
+</html>

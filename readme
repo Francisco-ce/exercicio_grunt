@@ -1,0 +1,114 @@
+Primeiro instalar Grunt-Cli de forma global: npm install -g grunt-cli
+Segundo passo iniciar o npm: npm init 
+Terceiro passo instalar o grunt na máquina: npm install --save-dev grunt
+Quarto passo, na pasta package.json incluir o grunt: 
+
+-"scripts": {
+    "grunt": "grunt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+Quinto passo, registrar as tarefas com: grunt.registerTask('default', [array])
+
+Sexto passo: instalar os plug-in: npm install --save-dev grunt-contrib-less
+
+Sétimo passo: carregar o plug-in do less: grunt.loadNpmTasks('grint-contrib-less');
+
+Oitavo passo, configurações do plug-in: configurar o ambiente de desenvolvimento e de produção
+- grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        //configurar o plug-in (less)
+        less:{
+            //ambiente de desenvolvimento
+            development:{
+                files:{
+                    'main.css':'main.less'
+                }
+            },
+            //ambiente de produção
+            production:{
+                options:{
+                    compress:true,
+                },
+                files:{
+                    'main.min.css':'main.less'
+                }
+            
+            }
+        }
+    })
+
+Nono passo, instalar o plug-in do Sass, parecido co o LESS (não vou repetir aqui, o que tive de diferente eu coloco aqui): npm install --save-dev grunt-contrib-sass
+
+Rodar as atividades de forma paralela: instalar o CONCURRENT 
+- npm install --save-dev grunt-concurrent
+-fazer as configurações no GruntFile.js:
+    * grunt.NpmTasks('grunt-concurrent')
+    * concurrent: {
+            target: ['less', 'sass']
+        } --> colocar todas as tarefas que for rodar em paralelo
+
+
+Organizando as pastas:
+
+- src: pasta onde desenvolvemos os códigos
+    * styles 
+    * scripts (código JS)
+
+
+Registrar a tarefa 'build': para que quando subir em alguma plataforma para colocar no ar o site somente a parte de produção seja 'lida'
+Adicionando isso, é preciso alterar no package.json:
+    *   "scripts": {
+             "grunt": "grunt",
+             "build": "grunt build",
+             ...
+
+*** Lembrete: rodar com run build - para que vá para ambiente de produção
+
+INstalando o plug-in para o programa ficar acompanhando o código: watch
+- npm install --save-dev grunt-contrib-watch
+
+Configurando o watch no GruntFile.js:
+- watch: {
+            less: {
+                files: ['src/styles/**/*.less'], --> da onde vai ser feito as alterações do dev
+                tasks: ['less:development']  --> para onde vai
+            }
+        }
+
+
+
+Instalar o plug-in replace e configura-lo:
+- npm install --save-dev grunt-replace
+    
+    confugurá-lo:
+    replace: {
+            dev: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'ENDERECO_DO_CSS',
+                            replacement: './styles/main.css'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten:true,
+                        src: ['src/index.html'],
+                        dest: 'dev/'
+                    }
+                ]
+            }
+        }
+
+no hatml colocar o @@ antes do nome.
+
+
+
+
+
+
+
+
